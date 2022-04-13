@@ -28,7 +28,7 @@
 					<tr>
 						<td><a href="/expenses/${expense.id}">${expense.name}</a></td>
 						<td>${expense.vendor}</td>
-						<td>${expense.amount}</td>
+						<td>$${expense.amount}</td>
 						<td><a href="/expenses/${expense.id}/edit"><button>Edit</button></a>
 							<form action="/expenses/${expense.id}" method = "post">
 								<input type="hidden" name="_method" value="delete"> 
