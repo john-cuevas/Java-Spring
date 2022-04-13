@@ -35,8 +35,9 @@ public class ExpenseController {
 //	RENDER THE FORM
 	
 	@GetMapping("/expenses")
-	public String newExpense(@ModelAttribute("expense") ExpensesModel expense, Model model) {
+	public String newExpense(Model model) {
 		model.addAttribute("expenses", expensesService.allExpenses() );
+		model.addAttribute("expense", new ExpensesModel());
 		return "new.jsp";
 	}
 	
@@ -44,8 +45,9 @@ public class ExpenseController {
 	
 	@PostMapping("/expenses")
 	public String create(@Valid @ModelAttribute("expense") ExpensesModel expense, 
-			BindingResult result) {
+			BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("expenses", expensesService.allExpenses() );
 			return "new.jsp";
 		}
 		else {
