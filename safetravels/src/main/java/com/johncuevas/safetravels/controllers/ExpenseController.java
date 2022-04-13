@@ -23,26 +23,26 @@ public class ExpenseController {
 	ExpensesService expensesService;
 	
 //	GET ALL EXPENSES
-	
-	@GetMapping("/expenses")
-	public String allExpenses(Model model) {
-		model.addAttribute("expenses", expensesService.allExpenses() );
-		return "allExpenses.jsp";
-	}
+//	
+//	@GetMapping("/expenses")
+//	public String allExpenses(Model model) {
+//		model.addAttribute("expenses", expensesService.allExpenses() );
+//		return "allExpenses.jsp";
+//	}
 	
 	
 	
 //	RENDER THE FORM
 	
-	@GetMapping("/expenses/new")
-	public String newExpense(@ModelAttribute("expense") ExpensesModel expense) {
-
+	@GetMapping("/expenses")
+	public String newExpense(@ModelAttribute("expense") ExpensesModel expense, Model model) {
+		model.addAttribute("expenses", expensesService.allExpenses() );
 		return "new.jsp";
 	}
 	
 //	PROCESS THE FORM
 	
-	@PostMapping("/expenses/new")
+	@PostMapping("/expenses")
 	public String create(@Valid @ModelAttribute("expense") ExpensesModel expense, 
 			BindingResult result) {
 		if (result.hasErrors()) {
