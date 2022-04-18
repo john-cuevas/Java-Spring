@@ -30,6 +30,11 @@
 				<form:errors path="authorName" class="text-danger" />
 				<form:input type="text" path="authorName" class="form-control" />
 			</div>
+			<div class="form-group mb-2">
+				<form:label path="thoughts">My Thoughts:</form:label>
+				<form:errors path="thoughts" class="text-danger" />
+				<form:textarea path="thoughts" class="form-control" />
+			</div>
 
 
 			<button class="btn btn-primary">Edit Book</button>

@@ -27,7 +27,7 @@
 						<th>Title</th>
 						<th>Author Name</th>
 						<th>Posted By</th>
-						<th>Actions</th>
+						<!-- <th>Actions</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -37,12 +37,22 @@
 							<td><a href="/books/${book.id}">${book.title}</a></td>
 							<td>${book.authorName}</td>
 							<td>${book.reader.userName}</td>
-							<td><a href="/books/${book.id}/edit"><button>Edit</button></a>
-								<form action="/books/${book.id}" method="post">
-									<input type="hidden" name="_method" value="delete">
-									<button class="btn btn-danger">Delete</button>
-								</form>
-							</td>
+
+							<%-- <c:choose>
+
+								<c:when test="${book.reader.id == userId }">
+									<td><a href="/books/${book.id}/edit"><button>Edit</button></a>
+										<form action="/books/${book.id}" method="post">
+											<input type="hidden" name="_method" value="delete">
+											<button class="btn btn-danger">Delete</button>
+										</form>
+									</td>
+
+								</c:when>
+								<c:otherwise>
+									<td></td>
+								</c:otherwise>
+							</c:choose> --%>
 
 						</tr>
 

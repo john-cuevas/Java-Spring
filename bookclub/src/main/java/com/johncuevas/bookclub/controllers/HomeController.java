@@ -35,7 +35,10 @@ public class HomeController {
 //	CREATE BOOK
 	
 	@GetMapping("/books/new")
-	public String newBookForm(@ModelAttribute("book") Book book) {
+	public String newBookForm(@ModelAttribute("book") Book book, HttpSession session) {
+		if(session.getAttribute("userId") ==null) {
+			return "redirect:/";
+		}
 		return "newBook.jsp";
 	}
 	
@@ -53,7 +56,10 @@ public class HomeController {
 	
 //	EDIT BOOK
 	@GetMapping("/books/{id}/edit")
-	public String editBook(Model model, @PathVariable("id") Long id) {
+	public String editBook(Model model, @PathVariable("id") Long id, HttpSession session) {
+		if(session.getAttribute("userId") ==null) {
+			return "redirect:/";
+		}
 		model.addAttribute("book", mainService.findOneBook(id));
 		return "editBook.jsp";
 	}
@@ -80,7 +86,10 @@ public class HomeController {
 	
 //	VIEW BOOK
 	@GetMapping("/books/{id}")
-	public String oneBook(Model model, @PathVariable("id") Long id) {
+	public String oneBook(Model model, @PathVariable("id") Long id, HttpSession session) {
+		if(session.getAttribute("userId") ==null) {
+			return "redirect:/";
+		}
 		model.addAttribute("book", mainService.findOneBook(id));
 		return "oneBook.jsp";
 	}

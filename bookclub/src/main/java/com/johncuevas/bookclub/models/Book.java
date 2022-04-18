@@ -32,6 +32,10 @@ public class Book {
 	@NotNull
 	@Size(min = 5, message = "Author name should be at least 5 characters long.")
 	private String authorName;
+	
+	@NotNull
+	@Size(min = 5, message = "Reader thoughts should be at least 5 characters long.")
+	private String thoughts;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -109,6 +113,14 @@ public class Book {
 
 	public void setReader(User reader) {
 		this.reader = reader;
+	}
+
+	public String getThoughts() {
+		return thoughts;
+	}
+
+	public void setThoughts(String thoughts) {
+		this.thoughts = thoughts;
 	}
 	
 	
