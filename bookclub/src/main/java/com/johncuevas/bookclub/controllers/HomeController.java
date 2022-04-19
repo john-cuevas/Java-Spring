@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.johncuevas.bookclub.models.Book;
+import com.johncuevas.bookclub.models.User;
 import com.johncuevas.bookclub.services.MainService;
+import com.johncuevas.bookclub.services.UserService;
 
 @Controller
 public class HomeController {
@@ -23,12 +25,23 @@ public class HomeController {
 	@Autowired
 	private MainService mainService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("/dashboard")
 	public String dashboard(Model model, HttpSession session) {
 		if(session.getAttribute("userId") ==null) {
 			return "redirect:/";
 		}
+//		Get userid from session
+		
+		Long userId = (Long) session.getAttribute("userId");
+		
+//		find user with UserService
+		User user = userService.findOneUser(userId);
+
 		model.addAttribute("books", mainService.allBooks());
+		model.addAttribute("user", user);
 		return "dashboard.jsp";
 	}
 	
@@ -60,8 +73,16 @@ public class HomeController {
 		if(session.getAttribute("userId") ==null) {
 			return "redirect:/";
 		}
-		model.addAttribute("book", mainService.findOneBook(id));
-		return "editBook.jsp";
+		
+		Book book = mainService.findOneBook(id);
+		model.addAttribute("book", book);
+		if( (Long) session.getAttribute("userId") == book.getReader().getId()){
+			return "editBook.jsp";
+			
+		}
+		return "redirect:/dashboard";
+//		model.addAttribute("book", mainService.findOneBook(id));
+//		return "editBook.jsp";
 	}
 	
 	@PutMapping("/books/{id}/edit")

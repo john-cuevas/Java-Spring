@@ -22,7 +22,7 @@
 				<h3>Here are your thoughts</h3>
 			</c:when>
 			<c:otherwise>
-				<h3>${book.reader.userName}read${book.title} by
+				<h3>${book.reader.userName} read ${book.title} by
 					${book.authorName }</h3>
 				<h3>Here are ${book.reader.userName}'s thoughts</h3>
 

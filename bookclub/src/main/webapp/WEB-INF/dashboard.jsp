@@ -20,6 +20,7 @@
 			<a href="/books/new"> New Book</a> <a href="/logout"> Logout</a>
 		</div>
 		<div class="m-2">
+			<h1>Everyone's books</h1>
 			<table class="table">
 				<thead>
 					<tr>
@@ -53,6 +54,32 @@
 									<td></td>
 								</c:otherwise>
 							</c:choose> --%>
+
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="m-2">
+			<h1>${username }'s books</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author Name</th>
+						<th>Posted By</th>
+						<!-- <th>Actions</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="book" items="${user.books}">
+						<tr>
+							<td>${book.id }</td>
+							<td><a href="/books/${book.id}">${book.title}</a></td>
+							<td>${book.authorName}</td>
+							<td>${book.reader.userName}</td>
 
 						</tr>
 
